@@ -2,6 +2,8 @@ from flask import Flask
 from flask_cors import CORS, cross_origin
 from flask import request
 import json
+import regex
+
 
 userAccount = json.load(open("./userAccount.json", "r", encoding="utf8"))
 products = json.load(open("./products.json", "r", encoding="utf8"))
@@ -76,15 +78,30 @@ def process_logout():
     }
   return None
 
+
+
+def search(keyword):
+  keywords = regex.findall(r'(?i)\b\p{L}+\b', keyword.lower())
+  productsSearched = []
+
+  for type in productsType:
+      for x in products[type]:
+          title = regex.findall(r'(?i)\b\p{L}+\b', x["title"].lower())
+          for key in keywords:
+              if key in title:
+                  productsSearched.append(x)
+                  break
+  return productsSearched
+
 @app.route('/search', methods=['POST'])
 @cross_origin(origin='*')
 def process_search():
   if request.method == 'POST':
     keyword = request.form['keyWord']
-    print(products)
+    searched = search(keyword=keyword)
+    print(searched)
   return {
-          'products': products,
-          'productsType': productsType,
+          'productsSearch': searched
           }
 
 @app.route('/request-data', methods=['GET'])
