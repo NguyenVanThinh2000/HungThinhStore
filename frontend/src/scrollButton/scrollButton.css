@@ -1,0 +1,20 @@
+.scroll-button {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  right: 40px;
+  bottom: 40px;
+  z-index: 1;
+  cursor: pointer;
+  color: white;
+  border-radius: 5px;
+  outline: none;
+  background-color: var(--green-color);
+  border: none;
+  font-size: 18px;
+  line-height: 44px;
+  transition: 0.4s;
+}
+.scroll-button ion-icon {
+  transform: rotate(-90deg);
+}

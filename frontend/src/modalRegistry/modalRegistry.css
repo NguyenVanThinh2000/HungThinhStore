@@ -1,0 +1,70 @@
+.modal-auth {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s;
+}
+
+.openModal {
+  opacity: 1;
+  visibility: visible;
+}
+
+.auth-inner {
+  position: relative;
+  width: 400px;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px 20px;
+  border-radius: 10px;
+}
+.auth-form {
+  margin-top: 20px;
+}
+.auth-inner input {
+  display: block;
+  border: 1px solid #dadada;
+  height: 40px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  background: #fff;
+  outline: none;
+  width: 100%;
+  padding: 0 8px;
+}
+.auth-title {
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+.auth-inner label {
+  font-weight: 500;
+  display: block;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.auth-submit {
+  padding: 8px 20px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  color: white;
+  background-color: var(--green-color);
+  margin: 0 auto;
+  display: block;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.auth-submit:hover {
+  background-color: #00563a;
+}

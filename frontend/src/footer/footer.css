@@ -1,0 +1,37 @@
+.footer-widgets {
+  padding-top: 30px;
+  margin-bottom: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+.footer-item {
+  padding: 0 10px;
+}
+.footer-item .title {
+  margin-bottom: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.footer a,
+.footer span {
+  margin-bottom: 20px;
+  display: block;
+  font-size: 14px;
+  transition: 0.4s;
+}
+.footer a:hover {
+  color: var(--green-color);
+}
+.footer-copyright {
+  background-color: #f1f0f1;
+  padding: 10px 0;
+}
+.footer-copyright p {
+  font-size: 15px;
+  font-weight: 600;
+}
+.footer-copyright span {
+  font-size: 14px;
+}

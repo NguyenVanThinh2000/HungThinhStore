@@ -1,0 +1,194 @@
+.detail-wrapper {
+  background-color: #f1f0f1;
+  padding-top: 30px;
+}
+.detail-title {
+  border: 1px solid #e6e6e6;
+  padding: 8px 10px;
+  background-color: white;
+  border-radius: 20px;
+  margin: 0 10px 30px 0;
+  width: 240px;
+  text-align: center;
+}
+.detail-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 20px;
+}
+.content-left {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 1fr 1.75fr;
+  grid-gap: 20px;
+}
+.content-left .preview {
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.slider-preview {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5px;
+  margin-top: 15px;
+}
+.preview-image {
+  border-radius: 5px;
+  border: 1px solid #e6e6e6;
+  cursor: pointer;
+}
+.content-specification {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.order-title {
+  font-weight: 500;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+.order-price {
+  margin-bottom: 5px;
+  display: flex;
+}
+.order-price .price {
+  font-size: 20px;
+  text-decoration: line-through;
+  color: var(--black-color);
+  font-weight: 400;
+  opacity: 0.6;
+  margin-right: 15px;
+  display: inline-block;
+  align-self: flex-end;
+  margin-bottom: 2px;
+}
+.order-price .saleOffPrice {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--red-color);
+}
+
+.order-btn {
+  border-top: 1px dashed #e0e0e0;
+  margin-top: 15px;
+  padding: 15px 5px 0 5px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  color: white;
+}
+.order-btn button {
+  outline: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-radius: 5px;
+  height: 44px;
+  line-height: 20px;
+  margin-bottom: 0;
+  cursor: pointer;
+  color: white;
+  transition: 0.4s;
+}
+.order-btn .order-btn-add-to-cart {
+  background-color: #14bdb3;
+}
+.order-btn .order-btn-add-to-cart:hover {
+  background-color: #0e928a;
+}
+.order-btn .order-btn-buy-now {
+  background-color: var(--green-color);
+}
+.order-btn .order-btn-buy-now:hover {
+  background-color: #005a3c;
+}
+
+.order-installment {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  padding: 0px 5px;
+  color: white;
+  align-items: center;
+}
+.order-installment .installment-phone,
+.order-installment .installment-card {
+  background-color: #0e0f27;
+  font-size: 14px;
+  border-radius: 5px;
+  margin-top: 5px;
+  height: 60px;
+  text-align: center;
+  padding: 9px;
+  cursor: pointer;
+}
+.order-installment .installment-phone p,
+.order-installment .installment-card p {
+  text-transform: uppercase;
+}
+.order-installment .installment-phone span,
+.order-installment .installment-card span {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.order-discount {
+  margin-top: 25px;
+  padding: 15px 0;
+  border-top: 1px dashed #e0e0e0;
+}
+.order-discount ul {
+  margin-top: 10px;
+}
+.order-discount ul li {
+  background: url(https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678132-gift-512.png);
+  background-repeat: no-repeat;
+  background-size: 17px;
+  background-position-y: 3px;
+  padding-left: 25px;
+  margin-left: 0;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 25px;
+  font-weight: 500;
+}
+.content-specification .specification-title,
+.infoProduct-title {
+  margin-right: 15px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-left: 4px solid #000;
+  padding-left: 10px;
+  font-size: 20px;
+  text-transform: inherit;
+  height: 25px;
+  line-height: 25px;
+  font-weight: 600;
+  border-bottom: none;
+  color: #000;
+  margin-bottom: 20px;
+}
+.content-specification .specification-list li {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  padding: 10px;
+  background: #f5f5f5;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.content-specification .specification-list li p {
+  font-weight: 600;
+}
+.detail-infoProduct {
+  border-radius: 10px;
+  margin-top: 40px;
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 40px;
+}

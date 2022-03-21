@@ -1,0 +1,45 @@
+.brand {
+  margin-top: 40px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+.brand-title {
+  margin-right: 15px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-left: 4px solid #000;
+  padding-left: 10px;
+  font-size: 25px;
+  text-transform: inherit;
+  height: 25px;
+  line-height: 25px;
+  font-weight: 600;
+  border-bottom: none;
+  color: #000;
+  margin-bottom: 20px;
+}
+.brand-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+.brand-item {
+  padding: 15px 30px 30px 30px;
+}
+.brand-image {
+  padding: 5px;
+  height: 125px;
+  border-radius: 10px;
+  border: 1px solid var(--green-color);
+  cursor: pointer;
+}
+.brand-name {
+  display: block;
+  text-transform: uppercase;
+  padding-top: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
