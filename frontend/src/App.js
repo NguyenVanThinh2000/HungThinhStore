@@ -6,6 +6,7 @@ import Home from "./Home";
 import ScrollButton from "./scrollButton";
 import Products from "./products";
 import ProductDetail from "./productDetail";
+import Search from "./search";
 import "./App.css";
 import Header from "./header";
 import MyAccount from "./myAccount";
@@ -49,6 +50,8 @@ function App() {
             }
           />
           <Route path="/my-account/:edit" element={<MyAccount />} />
+
+          <Route path="/search" element={<Search/>}/>
         </Routes>
       </div>
 
