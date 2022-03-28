@@ -9,7 +9,7 @@ import "./header.css";
 
 const axios = require("axios");
 
-function Header() {
+function Header(props) {
   const [state, dispatch] = useUser();
   var [isOpenModalRegistry, setIsOpenModalRegistry] = useState(false);
   var [isOpenModalLogin, setIsOpenModalLogin] = useState(false);
@@ -35,8 +35,16 @@ function Header() {
     }
   }, [state]);
 
-  const [keyWordSearch, setKeyWordSearch] = useState();
+  const sendDataToSearch = (data, keyWord) => {
+    props.callbackSetProductsSearch(data, keyWord);
+  }
+  
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter'){
+      handleSearch();
+    }
+  }
   const handleSearch = () => {
     var formData = new FormData();
     var keyWord = document.getElementById('header-input-search').value;
@@ -47,7 +55,8 @@ function Header() {
       data: formData,
     })
       .then((response) => {
-        // console.log(response.data)
+        sendDataToSearch(response.data['productsSearch'], keyWord)
+        document.getElementById('header-input-search').value = ''
       })
       .catch((error) => {
         console.log(error);
@@ -94,8 +103,7 @@ function Header() {
               id="header-input-search"
               className="header-input-search"
               placeholder="Hôm nay bạn muốn mua gì...?"
-              // onChange={() => {}}
-              // value={keyWordSearch}
+              onKeyDown={handleKeyPress}
             ></input>
             <Link to="/search" onClick={handleSearch}><button className="header-btn-search">
               <ion-icon name="search"></ion-icon>

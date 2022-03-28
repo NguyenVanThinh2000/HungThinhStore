@@ -19,6 +19,13 @@ function App() {
   const [state, dispatch] = useUser();
   var [products, setProducts] = useState({});
   var [productsType, setProductsType] = useState({});
+  var [productsSearch, setProductsSearch] = useState([]);
+  var [keyWord, setKeyWord] = useState('');
+  const callbackSetProductsSearch = (dataFromSearch, keyWord) =>{
+    setProductsSearch(dataFromSearch);
+    setKeyWord(keyWord);
+  }
+
   useEffect(() => {
     axios
       .get("http://127.0.0.1:5000/request-data")
@@ -30,10 +37,14 @@ function App() {
         console.log(error);
       });
   }, []);
+
+  useEffect(() => {
+  },[productsSearch, keyWord])
+
   return (
     <div className="App">
       <div className="content-wrapper">
-        <Header />
+        <Header callbackSetProductsSearch={callbackSetProductsSearch} />
         <Routes>
           <Route
             path="/"
@@ -41,7 +52,7 @@ function App() {
           />
           <Route
             path="/products/:productType"
-            element={<Products products={products} />}
+            element={<Products/>}
           />
           <Route
             path="/products/:productType/:productId"
@@ -51,7 +62,7 @@ function App() {
           />
           <Route path="/my-account/:edit" element={<MyAccount />} />
 
-          <Route path="/search" element={<Search/>}/>
+          <Route path="/search" element={<Search productsSearch={productsSearch} keyWord={keyWord}/>}/>
         </Routes>
       </div>
 

@@ -1,19 +1,39 @@
 import { Link, useParams } from "react-router-dom";
 import "./products.css";
-import { useEffect, useState } from "react";
+import { useState, useLayoutEffect} from "react";
+import axios from "axios";
 
-function Products({ products }) {
+function Products() {
   const productType = useParams()["productType"];
-  const [products_, setProducts_] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [filter, setFilter] = useState(1)
 
-  useEffect(() => {
-    if (Object.keys(products).length !== 0) {
-      setProducts_(products[productType]);
-    }
-  }, [products, productType]);
-  useEffect(() => {
+  useLayoutEffect(() => {
+    var data = new FormData();
+    data.append("filter", filter)
+    data.append('type', productType)
+    axios({
+      method: "post",
+      url: "http://127.0.0.1:5000/sort-products",
+      data: data
+    })
+      .then ((respone) => {
+        setProducts(respone.data["result"])
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [productType, filter]);
+
+  useLayoutEffect(() => {
     window.scrollTo(0, 0);
   });
+
+  const handleFilterOnChange = () => {
+    var option = document.getElementsByClassName('filter-select')[0].value
+    setFilter(option)
+  }
+
   return (
     <div>
       <div className="products-wrapper">
@@ -29,16 +49,16 @@ function Products({ products }) {
               </p>
             </div>
             <div className="product-filter">
-              <select className="filter-select" name="">
-                <option>Mới nhất </option>
-                <option>Giá (thấp - cao)</option>
-                <option>Giá (cao - thấp)</option>
+              <select className="filter-select" name="" onChange={handleFilterOnChange} defaultValue={1}>
+                <option value={1}>Mới nhất </option>
+                <option value={2}>Giá (thấp - cao)</option>
+                <option value={3}>Giá (cao - thấp)</option>
               </select>
             </div>
           </div>
           <div className="products-list">
             <div className="iphoneBP-list">
-              {products_.map((product, index) => (
+              {products.map((product, index) => (
                 <Link
                   key={index}
                   className="selling-item"

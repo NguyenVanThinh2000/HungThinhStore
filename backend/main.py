@@ -1,8 +1,10 @@
+from copy import copy
 from flask import Flask
 from flask_cors import CORS, cross_origin
 from flask import request
 import json
 import regex
+import numpy as np
 
 
 userAccount = json.load(open("./userAccount.json", "r", encoding="utf8"))
@@ -89,8 +91,9 @@ def search(keyword):
           title = regex.findall(r'(?i)\b\p{L}+\b', x["title"].lower())
           for key in keywords:
               if key in title:
-                  productsSearched.append(x)
-                  break
+                x["type"] = type;
+                productsSearched.append(x)
+                break
   return productsSearched
 
 @app.route('/search', methods=['POST'])
@@ -99,10 +102,52 @@ def process_search():
   if request.method == 'POST':
     keyword = request.form['keyWord']
     searched = search(keyword=keyword)
-    print(searched)
   return {
           'productsSearch': searched
           }
+
+
+def handlePrice(price):
+  p = price.split('.')
+  p = ''.join(p)
+  return int(p)
+@app.route('/sort-products', methods=['POST'])
+@cross_origin(origins='*')
+def process_sort():
+  if request.method == 'POST':
+    filter = request.form['filter']
+    type = request.form['type']
+
+    array = products[type].copy()
+
+    if filter == '1':
+      return {
+        'result': products[type]
+      }
+    elif filter == '2':
+      for i in range(len(array)-1):
+        for j in range(i+1, len(array)):
+          p1 = handlePrice(array[i]['saleOffPrice'])
+          p2 = handlePrice(array[j]['saleOffPrice'])
+          if p1 > p2:  
+            temp = array[i]
+            array[i] = array[j]
+            array[j] = temp
+      return {
+        'result': array
+      }
+    else:
+      for i in range(len(array)-1):
+        for j in range(i+1, len(array)):
+          p1 = handlePrice(array[i]['saleOffPrice'])
+          p2 = handlePrice(array[j]['saleOffPrice'])
+          if p1 < p2: 
+            temp = array[i]
+            array[i] = array[j]
+            array[j] = temp
+      return {
+        'result': array
+      }
 
 @app.route('/request-data', methods=['GET'])
 @cross_origin(origin='*')

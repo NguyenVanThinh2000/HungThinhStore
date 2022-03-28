@@ -29,7 +29,7 @@
 .products-list {
   margin-top: 20px;
   padding: 10px 20px;
-  box-shadow: 0 0 5px 1px #c3c3c3;
+  /* box-shadow: 0 0 5px 1px #c3c3c3; */
   background-color: white;
   border-radius: 10px;
 }
