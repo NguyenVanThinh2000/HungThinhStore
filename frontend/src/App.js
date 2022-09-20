@@ -16,62 +16,84 @@ import { useUser } from "./store";
 const axios = require("axios");
 
 function App() {
-  const [state, dispatch] = useUser();
-  var [products, setProducts] = useState({});
-  var [productsType, setProductsType] = useState({});
-  var [productsSearch, setProductsSearch] = useState([]);
-  var [keyWord, setKeyWord] = useState('');
-  const callbackSetProductsSearch = (dataFromSearch, keyWord) =>{
-    setProductsSearch(dataFromSearch);
-    setKeyWord(keyWord);
-  }
+    const [state, dispatch] = useUser();
+    var [products, setProducts] = useState({});
+    var [productsType, setProductsType] = useState({});
+    var [productsSearch, setProductsSearch] = useState([]);
+    var [keyWord, setKeyWord] = useState("");
+    const callbackSetProductsSearch = (dataFromSearch, keyWord) => {
+        setProductsSearch(dataFromSearch);
+        setKeyWord(keyWord);
+    };
 
-  useEffect(() => {
-    axios
-      .get("http://127.0.0.1:5000/request-data")
-      .then(function (response) {
-        setProducts(response["data"]["products"]);
-        setProductsType(response["data"]["productsType"]);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, []);
+    useEffect(() => {
+        axios
+            .get(process.env.REACT_APP_API_URL + "getProducts")
+            .then(function (response) {
+                setProducts(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        axios
+            .get(process.env.REACT_APP_API_URL + "getProductTypes")
+            .then(function (response) {
+                setProductsType(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }, []);
 
-  useEffect(() => {
-  },[productsSearch, keyWord])
+    useEffect(() => {}, [productsSearch, keyWord]);
 
-  return (
-    <div className="App">
-      <div className="content-wrapper">
-        <Header callbackSetProductsSearch={callbackSetProductsSearch} />
-        <Routes>
-          <Route
-            path="/"
-            element={<Home products={products} productsType={productsType} />}
-          />
-          <Route
-            path="/products/:productType"
-            element={<Products/>}
-          />
-          <Route
-            path="/products/:productType/:productId"
-            element={
-              <ProductDetail products={products} productsType={productsType} />
-            }
-          />
-          <Route path="/my-account/:edit" element={<MyAccount />} />
+    return (
+        <div className="App">
+            <div className="content-wrapper">
+                <Header callbackSetProductsSearch={callbackSetProductsSearch} />
+                <Routes>
+                    <Route
+                        path="/"
+                        element={
+                            <Home
+                                products={products}
+                                productsType={productsType}
+                            />
+                        }
+                    />
+                    <Route
+                        path="/products/:productType"
+                        element={<Products />}
+                    />
+                    <Route
+                        path="/products/:productType/:productId"
+                        element={
+                            <ProductDetail
+                                products={products}
+                                productsType={productsType}
+                            />
+                        }
+                    />
+                    <Route path="/my-account/:edit" element={<MyAccount />} />
 
-          <Route path="/search" element={<Search productsSearch={productsSearch} keyWord={keyWord}/>}/>
-        </Routes>
-      </div>
+                    <Route
+                        path="/search"
+                        element={
+                            <Search
+                                productsSearch={productsSearch}
+                                keyWord={keyWord}
+                            />
+                        }
+                    />
+                </Routes>
+            </div>
 
-      <div>
-        <Footer />
-      </div>
-      <ScrollButton />
-    </div>
-  );
+            <div>
+                <Footer />
+            </div>
+            <ScrollButton />
+        </div>
+    );
 }
 
 export default App;
